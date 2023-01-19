@@ -1,7 +1,7 @@
 {
-  "name": "blog-backend",
+  "name": "project-backend",
   "version": "1.0.0",
-  "description": "a backend for simple blog info saver",
+  "description": "a backend for simple winter term project",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/duylevietluu/blog-backend.git"
+    "url": "git+https://github.com/OberlinCollaborativeCodingWinterTerm/winter-term-project-webcodelearning.git"
   },
   "author": "Duy Le",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/duylevietluu/blog-backend/issues"
+    "url": "https://github.com/OberlinCollaborativeCodingWinterTerm/winter-term-project-webcodelearning/issues"
   },
-  "homepage": "https://github.com/duylevietluu/blog-backend",
+  "homepage": "https://github.com/OberlinCollaborativeCodingWinterTerm/winter-term-project-webcodelearning",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
