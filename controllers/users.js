@@ -3,16 +3,32 @@ const usersRouter = require('express').Router()
 const User = require('../models/user')
 
 usersRouter.get('/', async(request, response) => {
-    const users = await User.find({}).populate('posts')
+    const users = await User.find({}).populate('posts', {"date": 1, "test": 1})
     response.json(users)
+})
+
+usersRouter.get('/:id', async(request, response) => {
+    const user = await User.findById(request.params.id).populate('posts', {date: 1, test: 1, grades: 1})
+    if (!user) {
+        response.status(404).end()
+    }
+    else {
+        response.json(user)
+    }
 })
 
 usersRouter.post('/', async (request, response) => {
     const { username, name, password, adminCode } = request.body
 
     if (password === undefined || password.length < 3) {
-        response.status(400).json({
+        return response.status(400).json({
             error: 'password must be available and at least 3 characters long'
+        })
+    }
+
+    if (adminCode && adminCode !== process.env.ADMIN_CODE) {
+        return response.status(400).json({
+            error: 'admin code is submitted but incorrect, are you an imposter?'
         })
     }
 
@@ -23,7 +39,8 @@ usersRouter.post('/', async (request, response) => {
         username,
         name,
         passwordHash,
-        admin: adminCode === process.env.ADMIN_CODE
+        admin: adminCode === process.env.ADMIN_CODE,
+        grades: {},
     })
 
     const savedUser = await user.save()

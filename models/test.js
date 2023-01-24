@@ -9,12 +9,27 @@ const testSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    testCases: {
+        type: [
+            {
+                input: String,
+                output: { type: String, required: true },
+            }
+        ],
+        required: true,
+    },
     posts: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Post',
         }
     ],
+    // user id to grade
+    grades: {
+        type: Map,
+        // of: Number,
+        required: true,
+    },
 })
 
 testSchema.set('toJSON', {

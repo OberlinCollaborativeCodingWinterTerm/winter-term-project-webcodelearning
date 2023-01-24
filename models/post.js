@@ -19,6 +19,19 @@ const postSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+  results: {
+    type: [
+      {
+        success: Boolean,
+        message: String,
+      }
+    ],
+    required: true,
+  },
+  grade: {
+    type: Number,
+    require: true,
+  },
 })
 
 postSchema.set('toJSON', {

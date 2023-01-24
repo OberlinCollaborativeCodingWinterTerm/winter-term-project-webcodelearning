@@ -26,6 +26,12 @@ const userSchema = new mongoose.Schema({
       ref: 'Post'
     }
   ],
+  // test id to grade
+  grades: {
+    type: Map,
+    // of: Number,
+    required: true,
+  },
 })
 
 userSchema.set('toJSON', {
