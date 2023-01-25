@@ -8,7 +8,17 @@ usersRouter.get('/', async(request, response) => {
 })
 
 usersRouter.get('/:id', async(request, response) => {
-    const user = await User.findById(request.params.id).populate('posts', {date: 1, test: 1, grades: 1})
+    const user = await User
+        .findById(request.params.id)
+        .populate({
+            path: 'posts',
+            populate: {
+                path: 'test',
+                select: {title: 1},
+            },
+            select: {date: 1, test: 1, grade: 1},
+        })
+        
     if (!user) {
         response.status(404).end()
     }
